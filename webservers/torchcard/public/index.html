@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torch Card - Digital Business Cards</title>
+    <link rel="icon" href="/assets/logo.ico" type="image/x-icon">
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Color Variables */
+        :root {
+            --dark-blue: #0A1A35;
+            --blue: #1E2B48;
+            --orange: #FF6B35;
+            --light-orange: #FF8C42;
+            --white: #FFFFFF;
+            --light-gray: #E0E0E0;
+            --orange-rgb: 255, 107, 53; /* For rgba usage */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Header Styles with Logo */
+        header {
+            padding: 1rem 5%;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--blue) 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 135px;
+            width: auto;
+            transition: transform 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .logo-img:hover {
+            animation: none;
+            transform: scale(1.1);
+        }
+
+        .logo-text {
+            font-size: 3rem;
+            font-weight: 700; 
+            color: var(--orange);
+            font-family: 'Cinzel Decorative', cursive;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav a {
+            color: var(--light-gray);
+            margin: 0.5rem 1rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        nav a:hover {
+            color: var(--orange);
+        }
+
+        section[id] {
+            scroll-margin-top: 180px; 
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 5rem 5% 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin-bottom: 2rem;
+            color: var(--light-gray);
+        }
+
+        .founder-quote {
+            padding: 3rem 5%;
+            background-color: var(--blue);
+            text-align: center;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .founder-quote h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-style: normal;
+            color: var(--white);
+        }
+
+        .founder-quote:before {
+            content: '"';
+            font-size: 5rem;
+            color: var(--orange);
+            opacity: 0.2;
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+        }
+
+        .founder-quote:after {
+            content: '"';
+            font-size: 5rem;
+            color: var(--orange);
+            opacity: 0.2;
+            position: absolute;
+            bottom: -2rem;
+            right: 2rem;
+        }
+
+        .founder-quote p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 1rem auto;
+            position: relative;
+        }
+
+        .founder-name {
+            margin-top: 1rem;
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        .swiper {
+            width: 100%;
+            padding: 2rem 0;
+            --swiper-navigation-color: var(--orange);
+            --swiper-pagination-color: var(--orange);
+            --swiper-pagination-bullet-inactive-color: var(--orange);
+            --swiper-pagination-bullet-inactive-opacity: 0.5;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            background: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 1.5rem;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+
+        .swiper-pagination-bullet {
+            width: 10px;
+            height: 10px;
+        }
+
+        .screenshot {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .screenshot:hover {
+            transform: scale(1.03);
+        }
+
+        .lock-screen {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .lock-screen:hover {
+            transform: scale(1.03);
+        }
+
+        .example-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 1rem;
+            width: 100%;
+            max-width: 300px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            color: #333;
+            text-align: center;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+        }
+
+        .example-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .theme-name {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: var(--dark-blue);
+        }
+
+        .theme-style {
+            color: var(--orange);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .theme-screenshot {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-screenshot:hover {
+            transform: scale(1.02);
+        }
+        
+        .user-examples,
+        .lock-screen-section,
+        .examples {
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .user-examples h2,
+        .lock-screen-section h2,
+        .examples h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .user-examples p,
+        .lock-screen-section p,
+        .examples p {
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+            color: var(--light-gray);
+        }
+
+        .how-it-works {
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        .how-it-works h2 {
+             font-size: 2rem;
+             margin-bottom: 1rem;
+        }
+        .how-it-works p {
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+            color: var(--light-gray);
+        }
+
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            padding: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .step-icon {
+            font-size: 2.5rem;
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+
+        .pricing {
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .pricing h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing > p { 
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+            color: var(--light-gray);
+        }
+
+        .pricing-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            align-items: stretch; 
+        }
+
+        .pricing-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            width: 360px; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            color: #333;
+            text-align: center;
+            display: flex;
+            flex-direction: column; 
+            position: relative;
+            transition: all 0.3s ease-in-out; 
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--orange);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .pricing-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+        }
+
+        .pricing-price {
+            font-size: 2.5rem;
+            color: var(--orange);
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-features {
+            text-align: left;
+            margin-bottom: 2rem;
+            flex-grow: 1; 
+        }
+
+        .pricing-features li {
+            margin-bottom: 0.5rem;
+            list-style-type: none;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .pricing-features li:before {
+            content: "✓";
+            color: var(--orange);
+            position: absolute;
+            left: 0;
+        }
+        .pricing-features li em { 
+            font-style: italic;
+            color: #555; 
+        }
+
+        .cta-button {
+            background-color: var(--orange);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            position: relative; 
+            cursor: pointer; 
+        }
+        .details-toggle-button { 
+             margin-top: auto; 
+        }
+
+
+        .cta-button:hover {
+            background-color: var(--light-orange);
+            transform: translateY(-2px);
+        }
+
+        @keyframes fire-animation {
+            0% {
+                background-position: 0% 50%;
+                box-shadow: 0 0 15px #fef048, 0 0 20px #f54a00c0, 0 0 25px #ff0000a0, inset 0 0 5px #ffdc73;
+            }
+            50% {
+                background-position: 100% 50%;
+                box-shadow: 0 0 20px #fef048, 0 0 28px #f54a00c0, 0 0 35px #ff0000a0, inset 0 0 8px #ffdc73;
+            }
+            100% {
+                background-position: 0% 50%;
+                box-shadow: 0 0 15px #fef048, 0 0 20px #f54a00c0, 0 0 25px #ff0000a0, inset 0 0 5px #ffdc73;
+            }
+        }
+
+        .ignite-cta-style { 
+            background: linear-gradient(45deg, #d62828, #f77f00, #fcbf49, #eae2b7, #f77f00, #d62828);
+            background-size: 300% 300%; 
+            animation: fire-animation 3s ease-in-out infinite;
+            color: var(--white) !important; 
+            text-shadow: 0px 0px 4px rgba(0,0,0,0.7), 0px 0px 6px rgba(0,0,0,0.5);
+            border: 1px solid #c1121f; 
+            font-weight: bold;
+        }
+
+        .ignite-cta-style:hover {
+            transform: translateY(-3px) scale(1.02); 
+            box-shadow: 0 0 22px #fef048, 0 0 30px #f54a00, 0 0 40px #ff0000, inset 0 0 10px #ffdc73; 
+            background-image: linear-gradient(45deg, #d62828, #f77f00, #fcbf49, #eae2b7, #f77f00, #d62828); 
+        }
+
+        /* Styles for expandable plan details */
+        .plan-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease-in-out, padding-top 0.6s ease-in-out, padding-bottom 0.6s ease-in-out, margin-top 0.6s ease-in-out, opacity 0.6s ease-in-out, border-top-width 0.3s ease-in-out;
+            text-align: left;
+            color: #3c3c3c; 
+            font-size: 0.9rem;
+            padding-left: 0; 
+            padding-right: 0; 
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-top: 0;
+            border-top: 0px solid rgba(var(--orange-rgb), 0.3); 
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .plan-details.expanded {
+            max-height: 700px; 
+            margin-top: 1.5rem; 
+            padding-top: 1.5rem; 
+            padding-bottom: 1.5rem;
+            border-top: 1px solid rgba(var(--orange-rgb), 0.3);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .plan-details p strong {
+            color: var(--orange);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1rem; 
+        }
+
+        .plan-details ul {
+            list-style-type: disc;
+            padding-left: 20px; 
+            margin: 0 0 1.5rem 0; 
+        }
+
+        .plan-details ul li {
+            margin-bottom: 0.4rem;
+            padding-left: 0; 
+            color: #3c3c3c; 
+        }
+        .plan-details ul li::before { 
+            content: none;
+        }
+        
+        .details-button-wrapper { 
+            text-align: center;
+            margin-top: 1rem; 
+        }
+
+        .plan-details .choose-actual-plan-button { 
+            display: inline-block; 
+            width: auto; 
+            font-size: 0.95rem; 
+            padding: 0.8rem 1.5rem; 
+        }
+
+        .faq {
+            padding: 4rem 5%;
+            background-color: var(--blue);
+            text-align: center;
+        }
+
+        .faq h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .faq > p {
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+            color: var(--light-gray);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: var(--orange);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer {
+            color: var(--light-gray);
+        }
+
+        footer {
+            background-color: var(--dark-blue);
+            padding: 2rem 5%;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--orange);
+        }
+
+        .copyright {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 0.5rem 1rem;
+                text-align: center;
+            }
+
+            .logo-container {
+                flex-direction: row;
+                gap: 0.5rem;
+                margin-bottom: 0.5rem;
+                align-items: center;
+            }
+
+            .logo-img {
+                height: 60px;
+            }
+            
+            .logo-text {
+                font-size: 1.8rem; 
+            }
+
+            nav {
+                margin-top: 0.25rem;
+                width: 100%;
+            }
+
+            nav a {
+                margin: 0.25rem 0.5rem;
+                text-align: center;
+                flex: 1 0 40%;
+                min-width: 100px;
+                font-size: 1rem;
+                padding: 0.2rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .steps {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pricing-card { 
+                width: 100%; 
+                max-width: 340px; 
+            }
+            
+            .plan-details.expanded {
+                max-height: none; 
+            }
+
+
+            .founder-quote:before,
+            .founder-quote:after {
+                font-size: 3rem;
+            }
+
+            .founder-quote:before {
+                left: 1rem;
+                top: 0.5rem;
+            }
+
+            .founder-quote:after {
+                right: 1rem;
+                bottom: -1rem;
+            }
+
+            section[id] {
+                scroll-margin-top: 120px; 
+            }
+            
+            .swiper-button-next,
+            .swiper-button-prev {
+                display: none !important; 
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+</head>
+<body>
+    <header>
+        <a href="#" class="logo-container">
+            <img src="/assets/logo.png" alt="Torch Card Logo" class="logo-img">
+            <div class="logo-text">Torch Card</div>
+        </a>
+        <nav>
+            <a href="#user-examples">User Cards</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#faq">FAQ</a>
+            <a href="#pricing">Pricing</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>QR-Powered Digital Business Cards That Never Burn Out</h1>
+        <p>Create, share, and track your contacts with cutting-edge digital cards that never run out - just like an eternal flame.</p>
+    </section>
+
+    <section class="founder-quote" id="founder-quote"> 
+        <h3>Founder's Vision</h3>
+        <p>"In a world drowning in business cards and forgotten LinkedIn connections, I created Torch Card to be the spark that ignites meaningful professional relationships. No more lost contacts, no more awkward typing - just one scan and you're instantly connected.</p>
+        
+        <p>Torch Card is more than just a digital business card. It's your single, unified point of contact, whether you're sharing your music, showcasing your art, growing your brand, or building influence. Every scan connects people not just to you, but to everything you represent.</p>
+        
+        <p>No apps, no friction, no missed opportunities. Just instant access and lasting connections."</p>
+        <div class="founder-name">– Chris, Founder</div>
+    </section>
+
+    <section class="user-examples" id="user-examples">
+        <h2>Real Torch Card Examples</h2>
+        <p>See how professionals are using Torch Card. Swipe or use the arrows (on desktop) to explore, and click on any example to see it live.</p>
+        
+        <div class="swiper mySwiper1">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="/cards/pfit" target="_blank"><img src="/assets/ss1.png" alt="Torch Card Example 1" class="screenshot"></a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="/cards/spectroue" target="_blank"><img src="/assets/ss2.png" alt="Torch Card Example 2" class="screenshot"></a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="/cards/bbarrilleaux" target="_blank"><img src="/assets/ss3.png" alt="Torch Card Example 3" class="screenshot"></a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="/cards/hhtx" target="_blank"><img src="/assets/ss4.png" alt="Torch Card Example 4" class="screenshot"></a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="/cards/fwr" target="_blank"><img src="/assets/ss5.png" alt="Torch Card Example 5" class="screenshot"></a>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+    <section class="lock-screen-section" id="lock-screen-examples">
+        <h2>Lock Screen Examples</h2>
+        <p>Custom lock screens with QR codes for instant sharing. Swipe or use the arrows (on desktop) to browse different styles.</p>
+        
+        <div class="swiper mySwiper2">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="/assets/ls1.jpeg" alt="Lock Screen Example 1" class="lock-screen">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/assets/ls2.jpeg" alt="Lock Screen Example 2" class="lock-screen">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/assets/ls3.jpeg" alt="Lock Screen Example 3" class="lock-screen">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/assets/ls4.jpeg" alt="Lock Screen Example 4" class="lock-screen">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/assets/ls5.jpeg" alt="Lock Screen Example 5" class="lock-screen">
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+    <section class="examples" id="examples">
+        <h2>Example Torch Card Themes</h2>
+        <p>Explore our professionally designed theme options. Swipe or use the arrows (on desktop) to view themes, and click on a theme's image to see a live preview.</p>
+        
+        <div class="swiper mySwiper3">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="example-card">
+                        <div class="theme-name">Modern Executive</div>
+                        <div class="theme-style">Clean & Professional</div>
+                        <a href="/assets/examples/example1.html" target="_blank">
+                            <img src="/assets/example1.png" alt="Modern Executive Theme" class="theme-screenshot">
+                        </a>
+                        <p>Ideal for corporate professionals and executives</p>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide">
+                    <div class="example-card">
+                        <div class="theme-name">Creative Studio</div>
+                        <div class="theme-style">Artistic & Vibrant</div>
+                        <a href="/assets/examples/example2.html" target="_blank">
+                            <img src="/assets/example2.png" alt="Creative Studio Theme" class="theme-screenshot">
+                        </a>
+                        <p>Perfect for designers and creative professionals</p>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide">
+                    <div class="example-card">
+                        <div class="theme-name">Financial Advisor</div>
+                        <div class="theme-style">Trustworthy & Established</div>
+                        <a href="/assets/examples/example3.html" target="_blank">
+                            <img src="/assets/example3.png" alt="Financial Advisor Theme" class="theme-screenshot">
+                        </a>
+                        <p>Designed for financial professionals and advisors</p>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <h2>How Torch Card Works</h2>
+        <p>Three simple steps to modern networking</p>
+        
+        <div class="steps">
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-edit"></i></div>
+                <h3>Collaborate</h3>
+                <p>Work with a designer for both your unique Torch Card and QR Code</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-share-alt"></i></div>
+                <h3>Share</h3>
+                <p>Use your QR code or link to share</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-user-plus"></i></div>
+                <h3>Connect</h3>
+                <p>Contacts are saved instantly to their phone</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <h2>Pricing Plans</h2>
+        <p>Choose the plan that ignites your networking</p>
+        
+        <div class="pricing-container">
+            <div class="pricing-card">
+                <h3 class="pricing-title">Spark</h3>
+                <div class="pricing-price">$19.99<span>/year</span></div>
+                <ul class="pricing-features">
+                    <li>Direct-to-Contact QR Code</li>
+                    <li>Instant Contact File Download (.vcf)</li>
+                    <li>Essential QR for Quick Sharing</li>
+                </ul>
+                <a href="#" class="cta-button details-toggle-button">Details</a>
+                <div class="plan-details">
+                    <p><strong>More About Spark:</strong></p>
+                    <ul>
+                        <li>Detailed QR Design Process: We work with you to ensure your QR code is not just functional but also visually appealing.</li>
+                        <li>Universal .vcf Format: Your contact card is a standard .vcf file, compatible with virtually all smartphones and contact management apps.</li>
+                        <li>Ideal For: Individuals who need a quick, no-fuss way to share contact info digitally. Great for events and initial meetings.</li>
+                        <li>Hosting: Your .vcf file is securely hosted for reliable access.</li>
+                    </ul>
+                    <div class="details-button-wrapper">
+                        <a href="#signup-spark" class="cta-button choose-actual-plan-button">Choose Spark</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pricing-card">
+                <div class="popular-badge">Most Popular</div>
+                <h3 class="pricing-title">Ignite</h3> 
+                <div class="pricing-price">$49.99<span>/year</span></div>
+                <ul class="pricing-features">
+                    <li>Your Custom Torch Card Page</li>
+                    <li>Branded QR Code to Your Page</li>
+                    <li>Easy Contact Save from Page</li>
+                    <li><em>Includes all Spark essentials</em></li>
+                </ul>
+                <a href="#" class="cta-button details-toggle-button ignite-cta-style">Details</a>
+                <div class="plan-details">
+                    <p><strong>More About Ignite:</strong></p>
+                    <ul>
+                        <li>Custom Page Design: A beautifully crafted, mobile-responsive single page to showcase your profile, brand, or services. Includes sections for bio, links, portfolio images, etc.</li>
+                        <li>QR to Page: Your unique QR code directs scanners straight to your personalized Torch Card page.</li>
+                        <li>Enhanced Sharing: Visitors to your page can easily save your contact details with a prominent 'Save Contact' button and explore your links.</li>
+                        <li>Ideal For: Professionals and creatives wanting a central digital hub to make a lasting impression.</li>
+                    </ul>
+                    <div class="details-button-wrapper">
+                        <a href="#signup-ignite" class="cta-button choose-actual-plan-button ignite-cta-style">Choose Ignite</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pricing-card">
+                <h3 class="pricing-title">Torch</h3>
+                <div class="pricing-price">$69.99<span>/year</span></div>
+                <ul class="pricing-features">
+                    <li>All Ignite Plan Features, plus:</li> 
+                    <li>Track Your Reach: Basic Analytics</li>
+                    <li>Your Brand, Uncompromised: No Footer Link</li>
+                    <li>Always Ready: Custom Lock Screen QR</li>
+                </ul>
+                <a href="#" class="cta-button details-toggle-button">Details</a>
+                <div class="plan-details">
+                     <p><strong>More About Torch:</strong></p>
+                    <ul>
+                        <li>Analytics Dashboard: Get insights into how many times your Torch Card page is viewed, helping you gauge your networking impact.</li>
+                        <li>White-Label Option: The 'Powered by Torch Card' footer link is removed, giving your page a fully branded look.</li>
+                        <li>Custom Lock Screen: Receive a personalized phone lock screen wallpaper featuring your QR code for the quickest sharing access.</li>
+                        <li>Ideal For: Power users, influencers, and businesses looking for maximum features, branding control, and performance insights.</li>
+                    </ul>
+                    <div class="details-button-wrapper">
+                        <a href="#signup-torch" class="cta-button choose-actual-plan-button">Choose Torch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <p>Everything you need to know about Torch Card</p>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">What makes Torch Card different from other digital business cards?</div>
+                <div class="faq-answer">Torch Card combines beautiful design with powerful QR technology to create a seamless networking experience. Unlike other solutions, we focus on both aesthetics and functionality, ensuring your digital card makes a lasting impression while being incredibly easy to use.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do I share my Torch Card?</div>
+                <div class="faq-answer">You can share your Torch Card in multiple ways: scan your QR code, share a direct link, or even set it as your phone's lock screen for instant sharing. All methods instantly save your contact information to the recipient's phone.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can I update my information after creating my Torch Card?</div>
+                <div class="faq-answer">Yes! One of the biggest advantages of Torch Card is that you can update your information anytime. All your existing QR codes and links will automatically show your updated information - no need to reprint or redistribute anything.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Do recipients need to install an app to save my contact information?</div>
+                <div class="faq-answer">No, recipients don't need any special app. When they scan your QR code or visit your Torch Card link, their phone's native contact saving functionality is used - it works on all modern smartphones.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How long does it take to get my Torch Card?</div>
+                <div class="faq-answer">After purchasing, you'll work with our design team to create your perfect card. The process typically takes 2-3 business days depending on the complexity of your design and our current workload.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can I use my own QR code design?</div>
+                <div class="faq-answer">Absolutely! While we provide professional QR code designs as part of our service, you're welcome to use your own custom QR code design if you prefer.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What happens if I lose my phone with my QR code?</div>
+                <div class="faq-answer">No problem! Your Torch Card is stored in our system. You can always log in to your account to retrieve your QR code or have us send you a new one.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can I track who views my Torch Card?</div>
+                <div class="faq-answer">Our Torch plan includes basic analytics that show you how many times your card has been viewed. For more detailed analytics, please contact us about our enterprise solutions.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Is there a limit to how many times my Torch Card can be shared?</div>
+                <div class="faq-answer">No! Your Torch Card can be shared an unlimited number of times - it truly never "burns out." This is one of the key advantages over traditional paper business cards.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What if I need help with my Torch Card?</div>
+                <div class="faq-answer">We offer excellent customer support for all our Torch Card users. You can reach our support team via email at support@torchcard.com, and we typically respond within 24 hours.</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#founder-quote">About</a>
+            <a href="#pricing">Pricing</a>
+            <a href="mailto:chris@phoenixfireit.com">Contact</a>
+            <a href="#faq">FAQ</a>
+        </div>
+        <div class="copyright">© 2025 Torch Card | A Phoenix Fire Technology Product</div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Swiper 1 - User Examples
+            const swiper1 = new Swiper('.mySwiper1', {
+                slidesPerView: 1, 
+                spaceBetween: 20,
+                loop: true,
+                pagination: {
+                    el: '.mySwiper1 .swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.mySwiper1 .swiper-button-next',
+                    prevEl: '.mySwiper1 .swiper-button-prev',
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 2,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                    }
+                }
+            });
+            
+            // Swiper 2 - Lock Screen Examples
+            const swiper2 = new Swiper('.mySwiper2', {
+                slidesPerView: 1, 
+                spaceBetween: 20,
+                loop: true,
+                pagination: {
+                    el: '.mySwiper2 .swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.mySwiper2 .swiper-button-next',
+                    prevEl: '.mySwiper2 .swiper-button-prev',
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 2,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                    }
+                }
+            });
+            
+            // Swiper 3 - Example Themes
+            const swiper3 = new Swiper('.mySwiper3', {
+                slidesPerView: 1, 
+                spaceBetween: 30,
+                loop: true,
+                pagination: {
+                    el: '.mySwiper3 .swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.mySwiper3 .swiper-button-next',
+                    prevEl: '.mySwiper3 .swiper-button-prev',
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 2,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                    }
+                }
+            });
+
+            // Pricing plan expand/collapse logic
+            const pricingCards = document.querySelectorAll('.pricing-card');
+
+            pricingCards.forEach(card => {
+                const detailsToggleButton = card.querySelector('.details-toggle-button');
+                const detailsPanel = card.querySelector('.plan-details');
+
+                if (!detailsToggleButton || !detailsPanel) {
+                    return; 
+                }
+                
+                // Set and store original button text if not already set
+                if (!detailsToggleButton.dataset.originalText) {
+                    detailsToggleButton.dataset.originalText = detailsToggleButton.textContent; 
+                }
+
+                detailsToggleButton.addEventListener('click', function(event) {
+                    event.preventDefault(); 
+
+                    const clickedButton = this; 
+                    const parentCard = clickedButton.closest('.pricing-card');
+                    const targetDetailsPanel = parentCard.querySelector('.plan-details');
+                    
+                    const isCurrentlyExpanded = targetDetailsPanel.classList.contains('expanded');
+
+                    // First, collapse ALL OTHER currently open panels and reset their buttons
+                    document.querySelectorAll('.pricing-card').forEach(otherCard => {
+                        // Only process cards other than the one that was clicked
+                        if (otherCard !== parentCard) {
+                            const otherPanel = otherCard.querySelector('.plan-details');
+                            const otherButton = otherCard.querySelector('.details-toggle-button');
+
+                            if (otherPanel && otherPanel.classList.contains('expanded')) {
+                                otherPanel.classList.remove('expanded');
+                                if (otherButton && otherButton.dataset.originalText) {
+                                    otherButton.textContent = otherButton.dataset.originalText;
+                                }
+                            }
+                        }
+                    });
+
+                    // Now, toggle the clicked panel
+                    if (isCurrentlyExpanded) {
+                        // It was open, so close it
+                        targetDetailsPanel.classList.remove('expanded');
+                        clickedButton.textContent = clickedButton.dataset.originalText; 
+                    } else {
+                        // It was closed, so open it
+                        targetDetailsPanel.classList.add('expanded');
+                        clickedButton.textContent = 'Hide Details';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
