@@ -1,0 +1,231 @@
+services:
+  ddns-updater:
+    image: qmcgaw/ddns-updater
+    container_name: ddns-updater
+    networks:
+      - proxy_network
+    ports:
+      - 8111:8000/tcp
+    volumes:
+      - ./network/ddnsupdater/data:/updater/data
+    environment:
+      - CONFIG=
+      - PERIOD=5m
+      - UPDATE_COOLDOWN_PERIOD=5m
+      - PUBLICIP_FETCHERS=all
+      - PUBLICIP_HTTP_PROVIDERS=all
+      - PUBLICIPV4_HTTP_PROVIDERS=all
+      - PUBLICIPV6_HTTP_PROVIDERS=all
+      - PUBLICIP_DNS_PROVIDERS=all
+      - PUBLICIP_DNS_TIMEOUT=3s
+      - HTTP_TIMEOUT=10s
+      - LISTENING_PORT=8000
+      - ROOT_URL=/
+      - BACKUP_PERIOD=0
+      - BACKUP_DIRECTORY=/updater/data
+      - LOG_LEVEL=info
+      - LOG_CALLER=hidden
+      - SHOUTRRR_ADDRESSES=
+    restart: always
+
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+      - 881:81
+    volumes:
+      - ./network/npm/data:/data
+      - ./network/npm/letsencrypt:/etc/letsencrypt
+    networks:
+      - proxy_network
+
+  hbbs:
+    container_name: hbbs
+    ports:
+      - 21115:21115
+      - 21116:21116
+      - 21116:21116/udp
+      - 21118:21118
+    image: rustdesk/rustdesk-server:latest
+    command: hbbs -r rustdesk.example.com:21117
+    volumes:
+      - ./support/rustdesk/data:/root
+    networks:
+      - rustdesk-net
+    depends_on:
+      - hbbr
+    restart: unless-stopped
+
+  hbbr:
+    container_name: hbbr
+    ports:
+      - 21117:21117
+      - 21119:21119
+    image: rustdesk/rustdesk-server:latest
+    command: hbbr
+    volumes:
+      - ./support/rustdesk/data:/root
+    networks:
+      - rustdesk-net
+    restart: unless-stopped
+
+  pfitweb:
+    image: nginx:alpine
+    container_name: PFIT
+    restart: unless-stopped
+    volumes:
+      - ./webservers/pfitweb/public:/usr/share/nginx/html:ro
+      - ./webservers/pfitweb/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - proxy_network
+
+  hhtxweb:
+    image: nginx:alpine
+    container_name: HHTX
+    restart: unless-stopped
+    volumes:
+      - ./webservers/hhtxweb/public:/usr/share/nginx/html:ro
+    networks:
+      - proxy_network
+
+  soon:
+    image: nginx:alpine
+    container_name: soon
+    restart: unless-stopped
+    volumes:
+      - ./torchcard/soon/public:/usr/share/nginx/html:ro
+      - ./torchcard/soon/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - proxy_network
+
+  drone:
+    image: nginx:alpine
+    container_name: drone
+    restart: unless-stopped
+    volumes:
+      - ./webservers/drone/public:/usr/share/nginx/html:ro
+      - ./webservers/drone/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - proxy_network
+
+  torchcard-landing:
+    image: nginx:alpine
+    container_name: torchcard-landing-page
+    restart: unless-stopped
+    volumes:
+      - ./torchcard/torchcard/public:/usr/share/nginx/html:ro
+      - ./torchcard/torchcard/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - proxy_network
+
+  # --- Headless CMS (Strapi) for Torch Card ---
+
+  torchcard-cms-db: # PostgreSQL Database for Strapi
+    image: postgres:15-alpine
+    container_name: torchcard-cms-db
+    restart: unless-stopped
+    env_file:
+      - ./torchcard/cms/.env # Provides POSTGRES_USER, _DB, _PASSWORD for DB init
+    volumes:
+      - ./torchcard/cms/db_data:/var/lib/postgresql/data
+    networks:
+      - proxy_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"] # Uses vars from root .env
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  torchcard-cms: # Strapi Application - DEVELOPMENT SETUP
+    build: # Instruct Docker Compose to build this image
+      context: ./strapi_build_context # Path to the directory containing the Dockerfile and project source
+      dockerfile: Dockerfile         # Specifies to use 'Dockerfile' (the dev one)
+    image: torchcard-strapi-dev:latest # Optional: name the image being built
+    container_name: torchcard-cms-app
+    restart: unless-stopped
+    env_file:
+      - ./torchcard/cms/.env # Provides runtime ENV VARS to Strapi (NODE_ENV=development, DATABASE_*, etc.)
+    volumes:
+      # Mount your local project source into the container.
+      # Changes made via Content-Type Builder or code edits will be reflected on your host
+      # and 'strapi develop' will auto-reload.
+      - ./strapi_build_context:/opt/app
+
+      # Named volume for node_modules to use those installed during the 'docker build'
+      # and prevent host node_modules (or lack thereof) from interfering.
+      - strapi_app_node_modules:/opt/app/node_modules
+
+      # Persistent uploads (adjust host path if needed, ensure it's outside strapi_build_context)
+      - ./torchcard/cms/strapi_uploads:/opt/app/public/uploads
+    ports:
+      - "1337:1337"
+    # The CMD ["yarn", "develop"] is in the Dockerfile, so no 'command:' override is needed here.
+    networks:
+      - proxy_network
+    depends_on:
+      torchcard-cms-db:
+        condition: service_healthy
+    # Healthcheck is often tricky with 'strapi develop' due to long initial build times
+    # and dynamic recompilation. Comment out or adjust timings significantly.
+    # healthcheck:
+    #   test: ["CMD-SHELL", "curl -f http://localhost:1337/_health || exit 1"]
+    #   interval: 120s # Longer interval for dev
+    #   timeout: 60s   # Longer timeout for dev
+    #   retries: 5
+
+  torchcard-umami-db: # New PostgreSQL DB for Umami specific to Torch Card
+    image: postgres:15-alpine
+    container_name: torchcard-umami-db
+    restart: unless-stopped
+    env_file:
+      - ./torchcard/analytics/.torchcard_umami.env # Loads DB variables from Umami's .env
+    environment:
+      POSTGRES_DB: ${TC_UMAMI_DB_NAME}       # These are read from the env_file
+      POSTGRES_USER: ${TC_UMAMI_DB_USER}
+      POSTGRES_PASSWORD: ${TC_UMAMI_DB_PASSWORD}
+    volumes:
+      - ./torchcard/analytics/torchcard_umami_db_data:/var/lib/postgresql/data # Persists Umami DB data
+    networks:
+      - proxy_network # Or a dedicated internal network for analytics
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${TC_UMAMI_DB_USER} -d ${TC_UMAMI_DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  torchcard-umami: # New Umami instance for Torch Card
+    image: ghcr.io/umami-software/umami:postgresql-latest # Official Umami image for PostgreSQL
+    container_name: torchcard-umami-app
+    restart: unless-stopped
+    env_file:
+      - ./torchcard/analytics/.torchcard_umami.env # Loads HASH_SALT and DB connection details
+    environment:
+      DATABASE_URL: postgresql://${TC_UMAMI_DB_USER}:${TC_UMAMI_DB_PASSWORD}@torchcard-umami-db:5432/${TC_UMAMI_DB_NAME}
+      HASH_SALT: ${TC_UMAMI_HASH_SALT} # This is read from the env_file
+    ports:
+      # For initial setup/debugging. Can be removed if Nginx Proxy Manager is the sole access point.
+      # Choose a host port that is not already in use (e.g., 3000, 1337 are used by Strapi/other apps).
+      - "3001:3000" # Example: host port 3001 maps to Umami's default container port 3000
+    networks:
+      - proxy_network
+    depends_on:
+      torchcard-umami-db: # Ensures Umami's DB is healthy before Umami starts
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      
+volumes: # Add this top-level key if it doesn't exist
+  # ... any other named volumes you have ...
+  strapi_app_node_modules: # Defines the named volume for Strapi's node_modules
+
+networks:
+  proxy_network:
+    external: true  # Should already exist from NPM
+  rustdesk-net:
+    external: false
