@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hope on the Horizon Therapy - Modern & Dynamic Design</title>
+    <link rel="icon" href="logo.jpg" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        
+        /* --- Floating Appointment Button --- */
+        .floating-appt-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(to right, #56ccf2, #2f80ed);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 5px 20px rgba(47, 128, 237, 0.5);
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+        .floating-appt-button:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 8px 25px rgba(47, 128, 237, 0.6);
+        }
+
+        /* --- Header and Nav --- */
+        header {
+            background: #fff;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-bottom: 1px solid #eee;
+        }
+
+        header .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+        }
+
+        header .logo img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        header .logo span {
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        header nav ul li a {
+            margin: 0 15px;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #2f80ed;
+            font-weight: 500;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        header nav ul li a:hover {
+            background-color: #eaf4ff;
+        }
+
+        /* --- Hero Section (Profile) --- */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 60px 40px;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 40px auto;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-section .profile-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-section .profile-image-container {
+            flex-basis: 375px;
+            flex-shrink: 0;
+        }
+
+        .hero-section img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+
+        .profile-info h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #2f80ed;
+            margin-bottom: 20px;
+        }
+
+        .profile-info p {
+            margin-bottom: 1em;
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #666;
+        }
+        
+        .profile-info strong {
+            color: #333;
+        }
+
+        /* --- Care Options Section --- */
+        .care-options {
+            padding: 80px 40px;
+            background: linear-gradient(to right, #56ccf2, #2f80ed);
+            color: white;
+            text-align: center;
+        }
+
+        .care-options h3 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .care-options ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            list-style: none;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .care-options ul li {
+            background-color: rgba(255, 255, 255, 0.15); /* Glassmorphism effect */
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            flex: 1 1 300px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .care-options ul li:hover {
+            transform: translateY(-10px);
+        }
+
+        .care-options ul li h4 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .care-options ul li p {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        /* --- Fees and Contact Sections --- */
+        .fees-contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .fees, .contact {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .fees h4, .contact h4 {
+            color: #2f80ed;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .fees p, .contact p, .contact a {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        
+        .contact a {
+             color: #2f80ed;
+             text-decoration: none;
+             display: block;
+        }
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        @media screen and (max-width: 900px) {
+            .hero-section {
+                flex-direction: column-reverse;
+            }
+            .fees-contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media screen and (max-width: 768px) {
+            header .logo span { display: none; }
+            .floating-appt-button {
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+<script async 
+        src="https://stats.phoenixfireit.com/script.js" 
+        data-website-id=14e2927f-aa08-46b1-9a69-992a34df1626></script>
+</head>
+
+<body>
+    <a href="https://hopeonthehorizontx.clientsecure.me" class="floating-appt-button" data-spwidget-scope-id="ac4e616c-3195-43c2-afc8-c740e975aa81" data-spwidget-scope-uri="hopeonthehorizontx" data-spwidget-application-id="7c72cb9f9a9b913654bb89d6c7b4e71a77911b30192051da35384b4d0c6d505b" data-spwidget-scope-global data-spwidget-autobind>
+        Request Appointment
+    </a>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="logo.jpg" alt="Hope on the Horizon Logo">
+                <span>Hope on the Horizon</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#fees">Fees</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero-section">
+            <div class="profile-info">
+                <h1>Meet Your Therapist</h1>
+                <p>Hello, I&apos;m Natalie Parffrey. I am a Licensed Practicing Counselor Associate. My goal is to provide you with the support and tools to overcome life&rsquo;s challenges. Let&rsquo;s work together to create a path toward your personal healing and growth.</p>
+                <p>Despite what ole Forrest Gump shared with us while sitting on a park bench, life may not always be a box of chocolates. Sometimes it just seems like a downright box of rocks. Sometimes, we might feel overwhelmed, stuck, irritated, anxious, depressed, alone, misunderstood, and frustrated with the way things are and the burdens we carry. We may struggle to understand ourselves and those we love, or perhaps we think something must be wrong with us or our world. You might wonder what is the purpose of all of this and what am I supposed to do! How can I find happiness and peace? </p>
+				<p>Let’s Start With Putting Down That Box Of Rocks.</p>
+				<p>As an experienced solution-focused and trauma-informed therapist, I believe the answers you are seeking are closer than they appear. I believe in a tailored approach for my clients that will aid you in bringing your subconscious wisdom to the forefront of your mind.</p>
+				<p>You don’t have to do this alone. There are answers, and I am prepared to help you explore these questions. Therapy is a place where, together, we can navigate your thoughts, feelings, and subconscious mind while tapping into your strengths, to aid you in discovering the peace you are seeking in your mind, body, and relationship.</p>
+				<p><strong>Experience and Trainings:</strong> Trauma informed and Trained in EMDR (Eye Movement Desensitization Reprocessing), CBT (Cognitive Behavioral Therapy), DBT (Dialectical Behavior Therapy), Gottman Relationship Counseling, Relational Therapy, Hypnotherapy.</p>
+                <p>Member of the International Honors Society in Psychology, 4.0 GPA. Family and Individual Lifespan Development, Positive Psychology, Attachment-Based Practice, Early Childhood Education and Development, BA Psychology, AAS Early Childhood Development.</p>
+            </div>
+            <div class="profile-image-container">
+                <img src="profile2.jpeg" alt="Profile Picture">
+            </div>
+        </section>
+    </div>
+
+    <section class="care-options">
+        <h3>Our Care Options</h3>
+        <ul>
+            <li>
+                <h4>Individual Counseling</h4>
+                <p>Personalized counseling sessions focused on your unique challenges and goals.</p>
+            </li>
+            <li>
+                <h4>Couples Therapy</h4>
+                <p>Improve communication and strengthen your relationship with guided therapy sessions. Trained in the Gottman and RLT methods.</p>
+            </li>
+            <li>
+                <h4>Trauma Therapy</h4>
+                <p>Work through past trauma with evidence-based techniques and compassionate support.</p>
+            </li>
+            <li>
+                <h4>Hypnotherapy</h4>
+                <p>Guided relaxation and focused attention to achieve a heightened state of awareness, helping individuals access and address subconscious thoughts and behaviors.</p>
+            </li>
+            <li>
+                <h4>EMDR Therapy</h4>
+                <p>Designed to help individuals process and heal from trauma by using guided eye movements to reduce the emotional intensity of distressing memories.</p>
+            </li>
+            <li>
+                <h4>Online Therapy</h4>
+                <p>Convenient and effective virtual therapy sessions from the comfort of your own space using a secure platform.</p>
+            </li>
+        </ul>
+    </section>
+
+    <div class="container">
+         <div class="fees-contact-grid">
+            <div class="fees" id="fees">
+                <h4>Fees</h4>
+                <p><strong>Individual:</strong> $100</p>
+                <p><strong>Couple:</strong> $130</p>
+                <p><strong>Sliding Scale</strong> available for teachers, first responders, and military. Ask for details!</p>
+                <p>Payment can be made by Zelle prior to your appointment time.</p>
+            </div>
+            
+            <div class="contact" id="contact">
+                <h4>Contact Us</h4>
+                <p>Email: <a href="mailto:natalie@hopeonthehorizontx.com">natalie@hopeonthehorizontx.com</a></p>
+                <p><a href="https://www.psychologytoday.com/us/therapists/natalie-parffrey-houston-tx/1430250" target="_blank">Psychology Today Profile</a></p>
+                <p>Follow us on social media:</p>
+                <p><a href="https://www.facebook.com/profile.php?id=61568200589052" target="_blank">Facebook</a></p>
+                <p><a href="https://www.instagram.com/hopeonthehorizontx" target="_blank">Instagram</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Hope on the Horizon Therapy. All rights reserved.</p>
+    </footer>
+</body>
+</html>
