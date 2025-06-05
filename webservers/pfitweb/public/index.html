@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phoenix Fire IT | Complete IT Services in Katy, TX | Business & Home Tech Support</title>
+    <meta name="description" content="Professional IT services in Katy & Houston. Business server setup, home networking, Active Directory, 3D printer support & computer repair. Call (281) 815-0331">
+    <meta name="keywords" content="Katy IT services, Houston computer repair, business server setup, home network installation, Active Directory support, 3D printer help">
+    <meta name="author" content="Phoenix Fire IT">
+    <link rel="canonical" href="https://phoenixfireit.com">
+    <link rel="icon" href="logo.png" type="image/x-icon">
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Phoenix Fire IT | Complete IT Support in Katy, TX">
+    <meta property="og:description" content="Professional tech support for homes & businesses in Katy and Houston. Servers, networking, repairs and tech setup.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://phoenixfireit.com">
+    <meta property="og:image" content="https://phoenixfireit.com/logo.png">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ITService",
+      "name": "Phoenix Fire IT",
+      "image": "https://phoenixfireit.com/logo.png",
+      "@id": "https://phoenixfireit.com",
+      "url": "https://phoenixfireit.com",
+      "telephone": "+12818150331",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Katy",
+        "addressRegion": "TX",
+        "postalCode": "77494",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "29.7857853",
+        "longitude": "-95.8243956"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "serviceType": [
+        "Computer repair",
+        "Network installation",
+        "Server maintenance",
+        "3D printer support",
+        "Smart home setup"
+      ],
+      "areaServed": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": 29.7857853,
+          "longitude": -95.8243956
+        },
+        "geoRadius": "50000"
+      }
+    }
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            padding-top: 20px;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .brand-container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px 30px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .brand-text {
+            text-align: left;
+        }
+
+        .brand {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .fire-tagline {
+            color: #ff4500;
+            font-size: 1.2rem;
+            margin: 5px 0;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(255,69,0,0.5);
+            animation: firePulse 2s infinite alternate;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            margin: 5px 0 0;
+        }
+        
+        .service-area {
+            font-size: 1rem;
+            margin: 5px 0 0;
+            color: #3399ff;
+            font-weight: bold;
+        }
+
+        .logo img {
+            width: 200px;
+            height: auto;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 2;
+            margin: 20px 0;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            width: auto;
+            max-width: 90vw;
+            text-align: center;
+        }
+
+        .support-btn {
+            background-color: #ff4500;
+            animation: fireGlow 2s infinite alternate;
+        }
+
+        .contact-btn {
+            background-color: #007bff;
+            animation: bluePulse 2s infinite alternate;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-title {
+            color: #ff4500;
+            font-size: 1.8rem;
+            margin-top: 0;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        .service {
+            margin-bottom: 20px;
+        }
+
+        .service-title {
+            color: #3399ff;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            margin-top: 40px;
+        }
+        
+        .footer-service-area {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #ff4500;
+            font-weight: bold;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ff4500;
+        }
+
+        @keyframes fireGlow {
+            0% { background-color: #ff4500; box-shadow: 0 0 10px #ff4500; }
+            50% { background-color: #ff6347; box-shadow: 0 0 20px #ff6347; }
+            100% { background-color: #ff0000; box-shadow: 0 0 30px #ff0000; }
+        }
+
+        @keyframes firePulse {
+            0% { text-shadow: 0 0 5px rgba(255,69,0,0.5); }
+            100% { text-shadow: 0 0 15px rgba(255,69,0,0.8); }
+        }
+
+        @keyframes bluePulse {
+            0% { background-color: #007bff; box-shadow: 0 0 10px #007bff; }
+            50% { background-color: #3399ff; box-shadow: 0 0 20px #3399ff; }
+            100% { background-color: #0056b3; box-shadow: 0 0 30px #0056b3; }
+        }
+
+        @media (min-width: 768px) {
+            .button-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .btn {
+                flex: 1 1 auto;
+                min-width: 200px;
+            }
+
+            .services-container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .brand {
+                font-size: 2.5rem;
+            }
+
+            .fire-tagline {
+                font-size: 1.4rem;
+            }
+
+            .tagline {
+                font-size: 1.5rem;
+            }
+            
+            .service-area {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .services-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .brand-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .brand-text {
+                text-align: center;
+            }
+            .logo img {
+                width: 150px;
+            }
+        }
+    </style>
+<script async 
+        src="https://stats.phoenixfireit.com/script.js" 
+        data-website-id=a38fa7c1-80ee-4eee-8861-9b19de9d008a></script>
+</head>
+<body>
+    <video class="video-bg" autoplay muted loop playsinline poster="fallback.jpg">
+        <source src="blueback.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <header>
+        <div class="brand-container">
+            <div class="logo">
+                <img src="logo.png" alt="Phoenix Fire IT - Katy's Premier IT Service Provider" width="200" height="200">
+            </div>
+            <div class="brand-text">
+                <h1 class="brand">Phoenix Fire I.T.</h1>
+                <p class="fire-tagline">Rising from the Ashes, Leading in Tech</p>
+                <p class="tagline">Complete Tech Solutions for Katy Homes & Businesses</p>
+                <p class="service-area">Serving Katy, Houston and Surrounding Areas</p>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <a href="tel:+12818150331" class="btn support-btn" aria-label="Call Phoenix Fire IT for Immediate Support">
+                <i class="fas fa-phone"></i> Call Now
+            </a>
+            <a href="mailto:chris@phoenixfireit.com" class="btn contact-btn" aria-label="Email Phoenix Fire IT">
+                <i class="fas fa-envelope"></i> Email Us
+            </a>
+            <a href="https://contact.phoenixfireit.com" class="btn support-btn" target="_blank" aria-label="Phoenix Fire IT Digital Contact Card Services">
+                <i class="fas fa-id-card"></i> Digital Contact Card Services
+            </a>
+            <a href="https://contact.phoenixfireit.com/pfit" class="btn contact-btn" target="_blank" aria-label="Contact Phoenix Fire IT">
+                <i class="fas fa-envelope"></i> Contact Us
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <h2 class="section-title">IT & Tech Services for Home & Business</h2>
+            <p>Professional technology solutions for homes and businesses throughout the Houston area:</p>
+            
+            <div class="services-container">
+                <!-- Home Services -->
+                <div class="service">
+                    <h3 class="service-title">Home WiFi & Networking</h3>
+                    <p>Whole-home coverage solutions with parental controls and security.</p>
+                </div>
+                
+                <div class="service">
+                    <h3 class="service-title">Smart Home Setup</h3>
+                    <p>Voice assistants, smart lighting, security cameras, and automation.</p>
+                </div>
+                
+                <div class="service">
+                    <h3 class="service-title">Gaming Systems</h3>
+                    <p>PC/console optimization, lag reduction, and peripheral configuration.</p>
+                </div>
+                
+                <div class="service">
+                    <h3 class="service-title">3D Printer Support</h3>
+                    <p>Assembly, calibration, troubleshooting, and maintenance.</p>
+                </div>
+                
+                <!-- Business Infrastructure -->
+                <div class="service">
+                    <h3 class="service-title">Business Servers</h3>
+                    <p>Windows/Linux server deployment, maintenance, and security.</p>
+                </div>
+                
+                <div class="service">
+                    <h3 class="service-title">Active Directory</h3>
+                    <p>Domain controllers, user management, and group policy configuration.</p>
+                </div>
+                
+                <div class="service">
+                    <h3 class="service-title">Enterprise File Servers</h3>
+                    <p>Centralized secure storage with permissions and version control.</p>
+                </div>
+                
+                <div class="service">
+                    <h3 class="service-title">Networked Printers</h3>
+                    <p>Secure office printer/copier setup with queue management.</p>
+                </div>
+                
+                <!-- General IT -->
+                <div class="service">
+                    <h3 class="service-title">Remote Work Solutions</h3>
+                    <p>VPN setup, video conferencing, and secure remote access.</p>
+                </div>
+                
+                <div class="service">
+                    <h3 class="service-title">Device Setup</h3>
+                    <p>Phones, tablets, smart TVs, and IoT devices configured properly.</p>
+                </div>
+                
+                <div class="service">
+                    <h3 class="service-title">Computer Repair</h3>
+                    <p>Hardware diagnostics, virus removal, and performance optimization.</p>
+                </div>
+                
+                <div class="service">
+                    <h3 class="service-title">Data Protection</h3>
+                    <p>Backup solutions and disaster recovery planning.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Why Choose Our IT & Tech Services?</h2>
+            <div class="services-container">
+                <div class="service">
+                    <h3 class="service-title">One-Stop Tech Shop</h3>
+                    <p>From gaming PCs to business servers - we do it all.</p>
+                </div>
+                
+                <div class="service">
+                    <h3 class="service-title">Fast Response</h3>
+                    <p>Same-day service for critical business outages.</p>
+                </div>
+                
+                <div class="service">
+                    <h3 class="service-title">Transparent Pricing</h3>
+                    <p>No hidden fees - know costs upfront.</p>
+                </div>
+                
+                <div class="service">
+                    <h3 class="service-title">Local Experts</h3>
+                    <p>Katy-based team familiar with area needs.</p>
+                </div>
+                
+                <div class="service">
+                    <h3 class="service-title">Patient Support</h3>
+                    <p>We explain things clearly without jargon.</p>
+                </div>
+                
+                <div class="service">
+                    <h3 class="service-title">Flexible Scheduling</h3>
+                    <p>After-hours and weekend appointments available.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">Katy & Houston Service Areas</h2>
+            <p>Providing on-site support throughout the Houston metro:</p>
+            <ul style="columns: 2; list-style-type: none; padding: 0;">
+                <li>✓ Katy</li>
+                <li>✓ Houston</li>
+                <li>✓ Sugar Land</li>
+                <li>✓ The Woodlands</li>
+                <li>✓ Cypress</li>
+                <li>✓ Spring</li>
+                <li>✓ Richmond</li>
+                <li>✓ Fulshear</li>
+            </ul>
+            <p><strong>Remote Support:</strong> Available for cloud-based solutions nationwide.</p>
+        </section>
+    </main>
+
+    <footer itemscope itemtype="https://schema.org/LocalBusiness">
+        <div class="footer-service-area">
+            <strong><span itemprop="name">Phoenix Fire IT</span> - Katy's Technology Experts</strong>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61573849077302" target="_blank" aria-label="Phoenix Fire IT on Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com/PhoenixFireIT" target="_blank" aria-label="Phoenix Fire IT on Twitter"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" target="_blank" aria-label="Phoenix Fire IT on LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+        
+        <p itemprop="telephone">Call/Text: <a href="tel:+12818150331" style="color: #3399ff; text-decoration: none;">(281) 815-0331</a></p>
+        <p itemprop="email">Email: <a href="mailto:chris@phoenixfireit.com" style="color: #3399ff; text-decoration: none;">chris@phoenixfireit.com</a></p>
+        <p itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+            <span itemprop="addressLocality">Katy</span>, 
+            <span itemprop="addressRegion">TX</span> 
+            <span itemprop="postalCode">77494</span>
+        </p>
+        <p>&copy; 2025 Phoenix Fire IT. All rights reserved.</p>
+    </footer>
+
+    <!-- Font Awesome -->
+    <script defer src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <!-- Video Optimization -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('.video-bg');
+            video.setAttribute('preload', 'auto');
+        });
+    </script>
+</body>
+</html>
