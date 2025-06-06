@@ -15,9 +15,9 @@
             padding: 0;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        /* html {
+            scroll-behavior: smooth; -- REMOVED to allow JavaScript to control scroll speed
+        } */
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -25,6 +25,17 @@
             background-color: #fff;
             color: #333;
         }
+
+        /* Scroll offset to account for sticky nav */
+        #profile, #care, #social, #fees {
+            scroll-margin-top: 120px;
+        }
+        @media screen and (min-width: 769px) {
+            #profile, #care, #social, #fees {
+                scroll-margin-top: 80px;
+            }
+        }
+
 
         .section {
             padding: 60px 20px;
@@ -126,27 +137,65 @@
             list-style: none;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            gap: 25px;
         }
-        .care-options-list li {
+        .accordion-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: #fff;
+        }
+        .accordion-header {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
+            width: 100%;
+            background-color: transparent;
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+            text-align: left;
             gap: 20px;
+            font-family: 'Poppins', sans-serif;
         }
-        .care-options-list .icon {
+        .accordion-header .icon {
             font-size: 2em;
             color: #2f80ed;
-            margin-top: -5px;
         }
-        .care-options-list h4 {
+        .accordion-header .header-text h4 {
             font-size: 1.3em;
             color: #2f80ed;
             margin-bottom: 8px;
+            margin-top: 0;
         }
-        .care-options-list p {
+        .accordion-header .header-text p {
             font-size: 1em;
             color: #555;
             line-height: 1.6;
+            margin: 0;
+        }
+        .accordion-indicator {
+            margin-left: auto;
+            font-size: 2em;
+            color: #2f80ed;
+            transition: transform 0.3s ease;
+            align-self: flex-start;
+        }
+        .accordion-header.active .accordion-indicator {
+            transform: rotate(45deg);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            border-top: 1px solid #e0e0e0;
+            background-color: #f8f9fa;
+            border-radius: 0 0 8px 8px;
+        }
+        .accordion-content p {
+            padding: 20px;
+            font-size: 1em;
+            line-height: 1.7;
+            color: #333;
+            margin: 0;
         }
 
         .social-feed {
@@ -209,7 +258,6 @@
                 grid-template-columns: 1fr;
             }
 
-            /* New rules for responsive navigation */
             .spwidget-button-wrapper {
                 flex-basis: 100%;
                 text-align: center;
@@ -261,12 +309,66 @@
     <section class="section care-options" id="care">
         <h3 class="section-title">Our Care Options</h3>
         <ul class="care-options-list">
-             <li><div class="icon">👤</div><div><h4>Individual Counseling</h4><p>Personalized counseling sessions focused on your unique challenges and goals.</p></div></li>
-            <li><div class="icon">👥</div><div><h4>Couples Therapy</h4><p>Improve communication and strengthen your relationship with guided therapy sessions. Trained in the Gottman and RLT methods.</p></div></li>
-            <li><div class="icon">❤️‍🩹</div><div><h4>Trauma Therapy</h4><p>Work through past trauma with evidence-based techniques and compassionate support.</p></div></li>
-            <li><div class="icon">🌀</div><div><h4>Hypnotherapy</h4><p>Guided relaxation and focused attention to achieve a heightened state of awareness.</p></div></li>
-            <li><div class="icon">👁️</div><div><h4>EMDR Therapy</h4><p>Designed to help individuals process and heal from trauma by using guided eye movements.</p></div></li>
-            <li><div class="icon">💻</div><div><h4>Online Therapy</h4><p>Convenient and effective virtual therapy sessions from the comfort of your own space.</p></div></li>
+            <li class="accordion-item">
+                <button class="accordion-header">
+                    <div class="icon">👤</div>
+                    <div class="header-text"><h4>Individual Counseling</h4><p>Personalized counseling sessions focused on your unique challenges and goals.</p></div>
+                    <span class="accordion-indicator">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Individual counseling offers a private, confidential space to explore your thoughts, feelings, and behaviors with a trained professional. This one-on-one therapy is tailored to your specific needs, whether you're dealing with anxiety, depression, life transitions, or seeking personal growth. Together, we will set goals and develop coping strategies to help you navigate challenges, improve your well-being, and build a more fulfilling life.</p>
+                </div>
+            </li>
+            <li class="accordion-item">
+                <button class="accordion-header">
+                    <div class="icon">👥</div>
+                    <div class="header-text"><h4>Couples Therapy</h4><p>Improve communication and strengthen your relationship with guided therapy sessions.</p></div>
+                    <span class="accordion-indicator">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Couples therapy provides a supportive environment for you and your partner to address challenges and strengthen your bond. Using proven methods like the Gottman Method and Relational Life Therapy (RLT), we focus on improving communication, resolving conflicts constructively, and deepening emotional intimacy. The goal is to equip you with the tools to navigate disagreements, rebuild trust, and foster a healthier, more resilient partnership.</p>
+                </div>
+            </li>
+            <li class="accordion-item">
+                <button class="accordion-header">
+                    <div class="icon">❤️‍🩹</div>
+                    <div class="header-text"><h4>Trauma Therapy</h4><p>Work through past trauma with evidence-based techniques and compassionate support.</p></div>
+                    <span class="accordion-indicator">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Trauma therapy is a specialized approach designed to help individuals heal from the emotional and psychological effects of distressing life events. In a safe and empathetic setting, we use evidence-based techniques to help you process traumatic memories and reduce symptoms such as anxiety, flashbacks, and emotional numbness. Our aim is to help you regain a sense of safety, control, and peace in your life.</p>
+                </div>
+            </li>
+            <li class="accordion-item">
+                <button class="accordion-header">
+                    <div class="icon">🌀</div>
+                    <div class="header-text"><h4>Hypnotherapy</h4><p>Guided relaxation and focused attention to achieve a heightened state of awareness.</p></div>
+                    <span class="accordion-indicator">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Hypnotherapy is a therapeutic technique that uses guided relaxation and intense concentration to achieve a heightened state of awareness, often called a trance. While in this state, you are more open to suggestions that can help you modify perceptions, behaviors, and emotions. It is a powerful tool for addressing issues like phobias, anxiety, and unwanted habits by accessing the subconscious mind to create positive, lasting change.</p>
+                </div>
+            </li>
+            <li class="accordion-item">
+                <button class="accordion-header">
+                    <div class="icon">👁️</div>
+                    <div class="header-text"><h4>EMDR Therapy</h4><p>Designed to help individuals process and heal from trauma by using guided eye movements.</p></div>
+                    <span class="accordion-indicator">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Eye Movement Desensitization and Reprocessing (EMDR) is a highly effective therapy for overcoming trauma. It works by using bilateral stimulation, such as guided eye movements, to help the brain reprocess traumatic memories. This process allows the emotional distress associated with the memory to be resolved, enabling you to recall the event without the intense, painful feelings, and to move forward with your life.</p>
+                </div>
+            </li>
+            <li class="accordion-item">
+                <button class="accordion-header">
+                    <div class="icon">💻</div>
+                    <div class="header-text"><h4>Online Therapy</h4><p>Convenient and effective virtual therapy sessions from the comfort of your own space.</p></div>
+                    <span class="accordion-indicator">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Online therapy, or telehealth, offers the same professional support as in-person sessions but with the added convenience and comfort of being in your own space. Using a secure and confidential video platform, you can access high-quality therapy from anywhere with an internet connection. This flexible option makes it easier to fit counseling into your busy schedule without sacrificing the effectiveness of the therapeutic process.</p>
+                </div>
+            </li>
         </ul>
     </section>
 
@@ -309,5 +411,52 @@
     <footer>
         <p>&copy; 2024 Hope on the Horizon Therapy. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Accordion Logic ---
+            const accordionHeaders = document.querySelectorAll(".accordion-header");
+            accordionHeaders.forEach(header => {
+                header.addEventListener("click", () => {
+                    const currentlyActiveHeader = document.querySelector(".accordion-header.active");
+                    if (currentlyActiveHeader && currentlyActiveHeader !== header) {
+                        currentlyActiveHeader.classList.remove("active");
+                        currentlyActiveHeader.nextElementSibling.style.maxHeight = 0;
+                    }
+
+                    header.classList.toggle("active");
+                    const accordionContent = header.nextElementSibling;
+                    if (header.classList.contains("active")) {
+                        accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+                    } else {
+                        accordionContent.style.maxHeight = 0;
+                    }
+                });
+            });
+
+            // --- Custom Smooth Scroll Logic ---
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    let targetId = this.getAttribute('href');
+                    
+                    // Handle the home link separately to scroll to the top
+                    if (targetId === '#') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        return;
+                    }
+
+                    let targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
