@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hope on the Horizon Therapy</title>
-	<link rel="icon" href="logo.jpg" type="image/x-icon">
+    <title>Hope on the Horizon Therapy - Professional Design</title>
+    <link rel="icon" href="logo.jpg" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -15,12 +15,34 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
-            background-color: #f4f4f4;
+            background-color: #fff;
             color: #333;
-            scroll-behavior: smooth;
+        }
+
+        .section {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .section:last-of-type {
+            border-bottom: none;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 50px;
         }
 
         header {
@@ -28,270 +50,180 @@
             color: white;
             text-align: center;
             padding: 50px 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
-        header img {
-            width: 120px;
-            height: auto;
-        }
-
         header h1 {
             font-family: 'Playfair Display', serif;
             font-size: 2.5em;
             margin: 10px 0;
             letter-spacing: 2px;
         }
-
         header p {
             font-size: 1.2em;
             font-weight: 300;
         }
+        header img {
+            width: 120px;
+            height: auto;
+        }
 
         nav {
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #e7e7e7;
             padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-
         nav ul {
             display: flex;
             justify-content: center;
+            align-items: center;
             list-style: none;
             flex-wrap: wrap;
         }
-
-        nav ul li {
-            margin: 0 10px;
-        }
-
+        nav ul li { margin: 5px 10px; }
         nav ul li a {
             color: #2f80ed;
             text-decoration: none;
             font-size: 1em;
+            font-weight: 500;
             padding: 8px 16px;
-            border-radius: 25px;
+            border-radius: 4px;
             transition: background-color 0.3s ease;
         }
-
         nav ul li a:hover {
+            background-color: #e0e0e0;
+        }
+        .spwidget-button-wrapper a {
             background-color: #2f80ed;
             color: white;
         }
-
-        .spwidget-button-wrapper {
-            text-align: center;
-            display: inline-block;
-        }
-
-        .spwidget-button {
-            padding: 8px 16px;
-            color: #2f80ed;
-            border: 0;
-            border-radius: 25px;
-            font-size: 1em;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .spwidget-button:hover {
-            background: #2f80ed;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 0 20px;
+        .spwidget-button-wrapper a:hover {
+            background-color: #2566bd;
         }
 
         .profile {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: white;
-            padding: 40px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
-            margin-bottom: 60px;
-            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 40px;
         }
-
         .profile img {
             width: 100%;
             max-width: 375px;
             height: auto;
-            object-fit: contain;
-            margin-bottom: 20px;
+            border-radius: 8px;
+            flex-shrink: 0;
         }
-
-        .profile-info {
-            max-width: 600px;
-        }
-
-        .profile-info h2 {
-            color: #2f80ed;
-            font-weight: 700;
-        }
-
+        .profile-info { max-width: 600px; }
         .profile-info p {
-            margin-top: 20px;
+            margin-bottom: 1.2em;
             font-size: 1.1em;
             line-height: 1.8;
-            color: #666;
-        }
-
-        .care-options {
-            background-color: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 60px;
-        }
-
-        .care-options h3 {
-            color: #2f80ed;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-        }
-
-        .care-options ul {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            list-style: none;
-            justify-content: space-around;
-        }
-
-        .care-options ul li {
-            background-color: #f0f8ff;
-            padding: 20px;
-            border-radius: 15px;
-            flex: 1 1 calc(33% - 40px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.3s ease, transform 0.2s ease;
-            max-width: 300px;
-        }
-
-        .care-options ul li:hover {
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .care-options ul li h4 {
-            color: #2f80ed;
-            font-size: 1.3em;
-            margin-bottom: 10px;
-        }
-
-        .care-options ul li p {
-            font-size: 1em;
             color: #555;
         }
 
-        .fees {
-            margin-top: 30px;
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        .care-options-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .care-options-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .care-options-list .icon {
+            font-size: 2em;
+            color: #2f80ed;
+            margin-top: -5px;
+        }
+        .care-options-list h4 {
+            font-size: 1.3em;
+            color: #2f80ed;
+            margin-bottom: 8px;
+        }
+        .care-options-list p {
+            font-size: 1em;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .social-feed {
             text-align: center;
         }
+        .social-feed .fb-page {
+            margin: 0 auto;
+        }
 
-        .fees h4 {
+        .fees-contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: #f8f9fa;
+        }
+        .fees, .contact {
+            padding: 30px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            text-align: center;
+            background: #fff;
+        }
+        .fees h4, .contact h4 {
             color: #2f80ed;
             font-size: 1.5em;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
-
-        .fees p {
+        .fees p, .contact p, .contact a {
             font-size: 1em;
             color: #555;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
+        .contact a {
+            display: block;
+            color: #2f80ed;
+            text-decoration: none;
+        }
+        .contact a:hover { text-decoration: underline; }
 
         footer {
-            background-color: #2f80ed;
+            background-color: #222;
             color: white;
             text-align: center;
             padding: 20px 0;
-            margin-top: 50px;
-            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .contact {
-            margin-top: 40px;
-            padding: 20px;
-            background-color: #f0f8ff;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .contact h4 {
-            color: #2f80ed;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
-
-        .contact p,
-        .contact a {
-            font-size: 1em;
-            color: #333;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .contact a:hover {
-            color: #2f80ed;
-            text-decoration: underline;
-        }
-
-        footer p {
-            margin: 0;
-            font-size: 1em;
+            margin-top: 0;
         }
 
         @media screen and (max-width: 900px) {
             .profile {
                 flex-direction: column;
+                align-items: center;
                 text-align: center;
             }
+        }
+        @media screen and (max-width: 768px) {
+            .fees-contact-container {
+                grid-template-columns: 1fr;
+            }
 
-            .care-options ul li {
-                width: calc(50% - 20px);
+            /* New rules for responsive navigation */
+            .spwidget-button-wrapper {
+                flex-basis: 100%;
+                text-align: center;
+                margin-top: 10px;
             }
         }
 
-        @media screen and (max-width: 600px) {
-            header h1 {
-                font-size: 2em;
-            }
-
-            .care-options ul li {
-                width: 100%;
-            }
-
-            .profile img {
-                margin-bottom: 20px;
-            }
-
-            nav ul li {
-                margin: 0 5px;
-            }
-
-            nav ul li a {
-                padding: 8px 10px;
-            }
-        }
     </style>
-<script async 
-        src="https://stats.phoenixfireit.com/script.js" 
-        data-website-id=14e2927f-aa08-46b1-9a69-992a34df1626></script>
 </head>
 
 <body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v20.0&appId=YOUR_APP_ID&autoLogAppEvents=1" nonce="IeA9I1A9"></script>
+
     <header>
         <img src="logo.jpg" alt="Hope on the Horizon Logo">
         <h1>Hope on the Horizon Therapy</h1>
@@ -301,84 +233,81 @@
     <nav>
         <ul>
             <li><a href="#">Home</a></li>
+            <li><a href="#care">Services</a></li>
+            <li><a href="#social">Social</a></li>
             <li><a href="#fees">Fees</a></li>
-            <li><a href="#contact">Contact</a></li>
             <li class="spwidget-button-wrapper">
-                <a href="https://hopeonthehorizontx.clientsecure.me" class="spwidget-button" data-spwidget-scope-id="ac4e616c-3195-43c2-afc8-c740e975aa81" data-spwidget-scope-uri="hopeonthehorizontx" data-spwidget-application-id="7c72cb9f9a9b913654bb89d6c7b4e71a77911b30192051da35384b4d0c6d505b" data-spwidget-scope-global data-spwidget-autobind>
+                <a href="https://hopeonthehorizontx.clientsecure.me" class="spwidget-button">
                     Request Appointment
                 </a>
             </li>
         </ul>
     </nav>
 
-    <div class="container">
-        <section class="profile">
-            <img src="profile2.jpeg" alt="Profile Picture" style="margin: 0 auto 0 0; display: block;">
-            <div class="profile-info">
-                <h2>Meet Your Therapist</h2>
-                <p>Hello, I&apos;m Natalie Parffrey. I am a Licensed Practicing Counselor Associate. My goal is to provide you with the support and tools to overcome life&rsquo;s challenges. Let&rsquo;s work together to create a path toward your personal healing and growth.</p>
-                <p>Despite what ole Forrest Gump shared with us while sitting on a park bench, life may not always be a box of chocolates. Sometimes it just seems like a downright box of rocks. Sometimes, we might feel overwhelmed, stuck, irritated, anxious, depressed, alone, misunderstood, and frustrated with the way things are and the burdens we carry. We may struggle to understand ourselves and those we love, or perhaps we think something must be wrong with us or our world. You might wonder what is the purpose of all of this and what am I supposed to do! How can I find happiness and peace? </p>
-				<p>Let’s Start With Putting Down That Box Of Rocks.</p>
-				<p>As an experienced solution-focused and trauma-informed therapist, I believe the answers you are seeking are closer than they appear. I believe in a tailored approach for my clients that will aid you in bringing your subconscious wisdom to the forefront of your mind.</p>
-				<p>You don’t have to do this alone. There are answers, and I am prepared to help you explore these questions. Therapy is a place where, together, we can navigate your thoughts, feelings, and subconscious mind while tapping into your strengths, to aid you in discovering the peace you are seeking in your mind, body, and relationship.</p>
-				<p><strong>Experience and Trainings:</strong> Trauma informed and Trained in EMDR (Eye Movement Desensitization Reprocessing), CBT (Cognitive Behavioral Therapy), DBT (Dialectical Behavior Therapy), Gottman Relationship Counseling, Relational Therapy, Hypnotherapy.</p>
-                <p>Member of the International Honors Society in Psychology, 4.0 GPA. Family and Individual Lifespan Development, Positive Psychology, Attachment-Based Practice, Early Childhood Education and Development, BA Psychology, AAS Early Childhood Development.</p>
-            </div>
-        </section>
+    <section class="section profile" id="profile">
+        <img src="profile2.jpeg" alt="Profile Picture">
+        <div class="profile-info">
+            <h2 class="section-title" style="text-align: left; margin-left:0; margin-bottom: 20px;">Meet Your Therapist</h2>
+            <p>Hello, I&apos;m Natalie Parffrey. I am a Licensed Practicing Counselor Associate. My goal is to provide you with the support and tools to overcome life&rsquo;s challenges. Let&rsquo;s work together to create a path toward your personal healing and growth.</p>
+            <p>Despite what ole Forrest Gump shared with us while sitting on a park bench, life may not always be a box of chocolates. Sometimes it just seems like a downright box of rocks. Sometimes, we might feel overwhelmed, stuck, irritated, anxious, depressed, alone, misunderstood, and frustrated with the way things are and the burdens we carry. We may struggle to understand ourselves and those we love, or perhaps we think something must be wrong with us or our world. You might wonder what is the purpose of all of this and what am I supposed to do! How can I find happiness and peace? </p>
+            <p>Let’s Start With Putting Down That Box Of Rocks.</p>
+            <p>As an experienced solution-focused and trauma-informed therapist, I believe the answers you are seeking are closer than they appear. I believe in a tailored approach for my clients that will aid you in bringing your subconscious wisdom to the forefront of your mind.</p>
+            <p>You don’t have to do this alone. There are answers, and I am prepared to help you explore these questions. Therapy is a place where, together, we can navigate your thoughts, feelings, and subconscious mind while tapping into your strengths, to aid you in discovering the peace you are seeking in your mind, body, and relationship.</p>
+            <p><strong>Experience and Trainings:</strong> Trauma informed and Trained in EMDR (Eye Movement Desensitization Reprocessing), CBT (Cognitive Behavioral Therapy), DBT (Dialectical Behavior Therapy), Gottman Relationship Counseling, Relational Therapy, Hypnotherapy.</p>
+            <p>Member of the International Honors Society in Psychology, 4.0 GPA. Family and Individual Lifespan Development, Positive Psychology, Attachment-Based Practice, Early Childhood Education and Development, BA Psychology, AAS Early Childhood Development.</p>
+        </div>
+    </section>
 
-        <section class="care-options">
-            <h3>Our Care Options</h3>
-            <ul>
-                <li>
-                    <h4>Individual Counseling</h4>
-                    <p>Personalized counseling sessions focused on your unique challenges and goals.</p>
-                </li>
-                <li>
-                    <h4>Couples Therapy</h4>
-                    <p>Improve communication and strengthen your relationship with guided therapy sessions. Trained in the Gottman and RLT methods.</p>
-                </li>
-                <li>
-                    <h4>Trauma Therapy</h4>
-                    <p>Work through past trauma with evidence-based techniques and compassionate support.</p>
-                </li>
-                <li>
-                    <h4>Hypnotherapy</h4>
-                    <p>Guided relaxation and focused attention to achieve a heightened state of awareness, helping individuals access and address subconscious thoughts and behaviors.</p>
-                </li>
-                <li>
-                    <h4>EMDR Therapy</h4>
-                    <p>Designed to help individuals process and heal from trauma by using guided eye movements to reduce the emotional intensity of distressing memories.</p>
-                </li>
-                <li>
-                    <h4>Online Therapy</h4>
-                    <p>Convenient and effective virtual therapy sessions from the comfort of your own space using a secure platform.</p>
-                </li>
-            </ul>
+    <section class="section care-options" id="care">
+        <h3 class="section-title">Our Care Options</h3>
+        <ul class="care-options-list">
+             <li><div class="icon">👤</div><div><h4>Individual Counseling</h4><p>Personalized counseling sessions focused on your unique challenges and goals.</p></div></li>
+            <li><div class="icon">👥</div><div><h4>Couples Therapy</h4><p>Improve communication and strengthen your relationship with guided therapy sessions. Trained in the Gottman and RLT methods.</p></div></li>
+            <li><div class="icon">❤️‍🩹</div><div><h4>Trauma Therapy</h4><p>Work through past trauma with evidence-based techniques and compassionate support.</p></div></li>
+            <li><div class="icon">🌀</div><div><h4>Hypnotherapy</h4><p>Guided relaxation and focused attention to achieve a heightened state of awareness.</p></div></li>
+            <li><div class="icon">👁️</div><div><h4>EMDR Therapy</h4><p>Designed to help individuals process and heal from trauma by using guided eye movements.</p></div></li>
+            <li><div class="icon">💻</div><div><h4>Online Therapy</h4><p>Convenient and effective virtual therapy sessions from the comfort of your own space.</p></div></li>
+        </ul>
+    </section>
 
-            <!-- Fees Section -->
-            <div class="fees" id="fees">
-                <h4>Fees</h4>
-                <p><strong>Individual:</strong> $100</p>
-                <p><strong>Couple:</strong> $130</p>
-                <p><strong>Sliding Scale</strong> available for teachers, first responders, and military. Ask for details!</p>
-                <p>Payment can be made by Zelle prior to your appointment time.</p>
-            </div>
-			
-			<div class="contact" id="contact">
-				<h4>Contact Us</h4>
-				<p>Email: <a href="mailto:natalie@hopeonthehorizontx.com">natalie@hopeonthehorizontx.com</a></p>
-				<p><a href="https://www.psychologytoday.com/us/therapists/natalie-parffrey-houston-tx/1430250" target="_blank">Psychology Today Profile</a></p>
-				<p>Follow us on social media:</p>
-				<p><a href="https://www.facebook.com/profile.php?id=61568200589052" target="_blank">Facebook</a></p>
-				<p><a href="https://www.instagram.com/hopeonthehorizontx" target="_blank">Instagram</a></p>
-			</div>
-    </div>
-        </section>
+    <section class="section social-feed" id="social">
+        <h3 class="section-title">Stay Connected</h3>
+        <div class="fb-page" 
+             data-href="https://www.facebook.com/profile.php?id=61568200589052" 
+             data-tabs="timeline" 
+             data-width="500" 
+             data-height="500" 
+             data-small-header="false" 
+             data-adapt-container-width="true" 
+             data-hide-cover="false" 
+             data-show-facepile="true">
+            <blockquote cite="https://www.facebook.com/profile.php?id=61568200589052" class="fb-xfbml-parse-ignore">
+                <a href="https://www.facebook.com/profile.php?id=61568200589052">Hope on the Horizon Therapy</a>
+            </blockquote>
+        </div>
+    </section>
+
+    <div class="fees-contact-container" id="fees">
+        <div class="fees">
+            <h4>Fees</h4>
+            <p><strong>Individual:</strong> $100</p>
+            <p><strong>Couple:</strong> $130</p>
+            <p><strong>Sliding Scale</strong> available for teachers, first responders, and military. Ask for details!</p>
+            <p>Payment can be made by Zelle prior to your appointment time.</p>
+        </div>
+        
+        <div class="contact" id="contact">
+            <h4>Contact Us</h4>
+            <p>Email: <a href="mailto:natalie@hopeonthehorizontx.com">natalie@hopeonthehorizontx.com</a></p>
+            <p><a href="https://www.psychologytoday.com/us/therapists/natalie-parffrey-houston-tx/1430250" target="_blank">Psychology Today Profile</a></p>
+            <p>Follow us on social media:</p>
+            <p><a href="https://www.facebook.com/profile.php?id=61568200589052" target="_blank">Facebook</a></p>
+            <p><a href="https://www.instagram.com/hopeonthehorizontx" target="_blank">Instagram</a></p>
+        </div>
     </div>
 
     <footer>
         <p>&copy; 2024 Hope on the Horizon Therapy. All rights reserved.</p>
     </footer>
 </body>
-
 </html>
